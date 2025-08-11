@@ -8,7 +8,8 @@ $date = date("Y-m-d H:i:s");
 $sql = "INSERT INTO notes (Title, Body, CreationDate) VALUES ('$TITLE', '$CONTENT', '$date')";   
 
 if (mysqli_query($conn, $sql)) {
-    echo "New record created successfully";
+    header("Location: index.php");
+    exit();
 } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }

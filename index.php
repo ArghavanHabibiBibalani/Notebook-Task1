@@ -11,6 +11,7 @@ $result = mysqli_query($conn, $sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My notes</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>My Notes</h1>
@@ -29,7 +30,7 @@ $result = mysqli_query($conn, $sql);
                 echo "<td>" . htmlspecialchars($row['Title']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['Body']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['CreationDate']) . "</td>";
-                echo "<td><a href='Edit.php?id=" . $row['id_Notes'] . "'>Edit</a></td>";
+                echo "<td><a class='btn' href='Edit.php?id=" . $row['id_Notes'] . "'>Edit</a></td>";
                 
                 echo "</tr>";
             }
@@ -40,6 +41,5 @@ $result = mysqli_query($conn, $sql);
     </table>
     <br><br>
     <button onclick="window.location.href='Add.php'">Add New</button>
-    <button onclick="window.location.href='index.php'">Home</button>
 </body>
 </html>

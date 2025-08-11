@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add note</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Add Note</h1>
@@ -18,5 +19,7 @@
         <textarea id="content" placeholder="type your note HERE." name="content" rows="4" cols="50" required></textarea><br><br>
 
         <button type="submit">Submit</button>
+        <button onclick="window.location.href='index.php'">Home</button>
+
 </body>
 </html>
