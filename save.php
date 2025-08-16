@@ -1,13 +1,13 @@
 <?php
 include 'Database.php';
+include 'Note.php';
+
+$noteObj = new Note($conn);
 
 $TITLE = $_POST['title'];
 $CONTENT = $_POST['content'];
-$date = date("Y-m-d H:i:s");
 
-$sql = "INSERT INTO notes (Title, Body, CreationDate) VALUES ('$TITLE', '$CONTENT', '$date')";   
-
-if (mysqli_query($conn, $sql)) {
+if ($noteObj->addNote($TITLE, $CONTENT)) {
     header("Location: index.php");
     exit();
 } else {

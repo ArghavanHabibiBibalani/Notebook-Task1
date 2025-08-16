@@ -1,8 +1,15 @@
 <?php
 include 'Database.php';
+include 'Note.php';
 
-$sql = "SELECT * FROM notes";
-$result = mysqli_query($conn, $sql);
+$noteObj = new Note($conn);
+$result = $noteObj->getAllNotes();
+
+if (!$result) {
+    echo "No note found with the given ID.";
+    exit;
+}
+
 ?>
 
 <!DOCTYPE html>

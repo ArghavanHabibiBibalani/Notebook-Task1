@@ -1,29 +1,28 @@
 <?php
  include 'Database.php';
+ include 'Note.php';
 
  if (!isset($_GET['id'])) {
     header('Location: index.php');
     exit;
 }
 
+$noteObj = new Note($conn);
+
 $id = $_GET['id'];
 
-$sql = "SELECT * FROM notes WHERE id_Notes = $id";
-$result = mysqli_query($conn, $sql);
-if (mysqli_num_rows($result) == 0) {
-    echo "No note found with the given ID.";
-    exit;   
-}
+$note = $noteObj->getNoteById($id);
 
-$note = mysqli_fetch_assoc($result);
+if (!$note) {
+    echo "No note found with the given ID.";
+    exit;
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $newTitle = $_POST['title'];
     $newBody = $_POST['body'];
 
-    $updateSql = "UPDATE notes SET Title = '$newTitle', Body = '$newBody' WHERE id_Notes = $id";
-
-    if (mysqli_query($conn, $updateSql)) {
+    if ($noteObj->updateNote($id, $newTitle, $newBody)) {
         header('Location: index.php');
         exit;
     } else {
